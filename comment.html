@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>留言板</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="static/bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/Font-Awesome-3.2.1/css/font-awesome.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="static/bootstrap-3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="static/jquery/jquery-1.11.1.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="static/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    div.comments-box {
+        width: auto;
+        height: auto;
+        display: inline-block;
+    }
+
+    div.comment-container {
+        width: 1000px;
+        height: auto;
+        margin: 10px;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+/*    div.comments-box:before {
+        display: block;
+        content: "";
+        top: 0;
+        bottom: 0;
+        left: 40px;
+        width: 2px;
+        background-color: #f3f3f3;
+        position: absolute;
+        z-index: -1;
+    }*/
+
+    div.poster-box{
+        width: 80px;
+        top: 0;
+        text-align: center;
+        display: inline-block;
+        /*position: relative;*/
+    }
+
+    div.vote-box {
+        width: 50px;
+        height: 100%;
+        margin: auto;
+    }.vote-box i {
+        color: #646464;
+        display: block;
+        font-size: 2.6em;
+    }
+
+    img.poster-image {
+        width: 45px;
+        height: 45px;
+        border-radius: 4px;
+    }
+
+    div.small-square {
+        height: 15px;
+        width: 15px;
+        margin-top: 23px;
+        margin-left: -8px;
+        border-left: 1px solid #D5D5D5;
+        border-bottom: 1px solid #D5D5D5;
+        background: #F5F5F5;
+        position: absolute;
+        z-index: 2; 
+        display: inline-block;
+
+        transform: rotate(45deg);
+        -ms-transform: rotate(45deg);       /* IE 9 */
+        -webkit-transform: rotate(45deg);   /* Safari and Chrome */
+        -o-transform: rotate(45deg);        /* Opera */
+        -moz-transform: rotate(45deg);  
+    }
+
+    div.comment-big-box {
+        width: 70%;
+        height: auto;
+        min-height: 140px;
+        max-height: 400px;
+        overflow: hidden;
+        display: inline-block;
+        border: 1px solid #D5D5D5;
+        border-radius: 4px;
+    }
+
+
+    div.comment-header-box {
+        width: 100%;
+        height: 45px;
+        background: #F5F5F5;
+        border-bottom: 1px solid #EAEAEA;
+    }
+    div.comment-header-text {
+        line-height: 45px;
+        padding: 0 15px;
+        display: inline;}
+        .comment-header-text a {
+            text-decoration: none;
+            color: #555555;
+        }
+    div.comment-content-box {
+        width: 100%;
+        height: auto;
+        /*position: relative;*/
+    }
+    div.comment-text {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+    </style>
+</head>
+<body>
+<div class="comments-box">
+<div style="display:inline-block;position:absolute;top:50%;">
+<i class="icon-spinner icon-spin icon-3x"></i> 评论加载中...
+</div>
+<!-- 
+<div class="comment-container">
+
+    <div class="poster-box">
+        <img class="poster-image" src="static/images/347977.jpg"/>
+        <div class="vote-box">
+        <i class="icon-sort-up"></i>
+        <span class="badge">0</span>
+        <i class="icon-sort-down"></i>
+        </div>
+    </div>
+    <div class="small-square"></div>
+    <div class="comment-big-box">
+        <div class="comment-header-box">
+            <div class="comment-header-text">
+            <strong><a href="">jiaju.chen</a></strong>
+
+                comment
+
+            <time>on 23 May 2014</time>
+            </div>
+        </div>
+        <div class="comment-content-box">
+             <div class="comment-text">
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             <p>hello world</p>
+             </div>
+        </div>
+    </div> -->
+
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+    $.ajax({
+        url:'http://192.168.1.102:5000/comment/comment',
+        type:'get',
+        async:false,
+        data:{
+            article_id:0
+        },
+        contentType:'json',
+        success:function(data){
+            var hcode = '';
+            for(index in data){
+                var obj = data[index];
+
+                hcode += '<div class="comment-container"><div class="poster-box"><img class="poster-image" src="static/images/347977.jpg"/><div class="vote-box"><i class="icon-sort-up"></i><span class="badge" value="'+obj.id+'">'+obj.star+'</span><i class="icon-sort-down"></i></div></div><div class="small-square"></div><div class="comment-big-box"><div class="comment-header-box"><div class="comment-header-text"><strong><a href="">'+obj.author+'</a></strong> comment <time>on 23 May 2014</time></div></div><div class="comment-content-box"><div class="comment-text"><p>'+obj.body+'</p></div></div></div></div>';
+            };
+        $(".comments-box").html(hcode);
+        },
+        error:function(data){
+            console.log("服务器异常");
+        }
+    });
+
+    $(".icon-sort-up").click(function(){
+        var badge = $(this).next();
+        comment_id = badge.attr("value");
+        $.ajax({
+            url:'http://localhost:5000/comment/comment/'+comment_id,
+            data:'{"star_type":1}',
+            type:'post',
+            dateType:'json',
+            contentType:'application/json;charset=utf-8',
+            success:function(){
+                badge.html(parseInt(badge.html())+1);
+            }
+        });
+    });
+    $(".icon-sort-down").click(function(){
+        var badge = $(this).prev();
+        comment_id = badge.attr("value");
+        $.ajax({
+            url:'http://localhost:5000/comment/comment/'+comment_id,
+            data:'{"star_type":-1}',
+            type:"post",
+            dataType:"json",
+            contentType:"application/json;charset=utf-8",
+            success:function(){
+                badge.html(parseInt(badge.html())-1);
+            },
+            error:function(){
+                alert('error');
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

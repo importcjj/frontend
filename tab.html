@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="static/jquery/jquery-1.11.1.js"></script>
+    <style type="text/css">
+    body {
+        background: #f6f6f6;
+    }
+    div.big-box {
+        width: 1000px;
+        height: 600px;
+        margin: auto;
+        top: 50%;
+        left: 50%;
+        margin-top: -300px;
+        margin-left: -500px;
+        position: absolute;
+        box-sizing: border-box;
+        /*border: 1px solid #000000;*/
+    }
+    div.tab-header-box {
+        width: auto;
+        height: 60px;
+        margin: 2px;
+        position: relative;
+        box-sizing: border-box;
+        text-align: center;
+        border: 1px solid #000000;
+    }
+    div.one-tab-box {
+        /*border: 1px solid #000000;*/
+        width: 230px;
+        height: 50px;
+        top: 50%;
+        margin: -25px 5px 0 5px;
+        position: relative;
+        display: inline-block;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: 66px;
+    }
+    div.tech-board {
+        background-image: url(static/images/cars/1.jpg);
+        background-position: 50% 70%;
+        /*-webkit-transform: scale(0.5, 0.5);*/
+    }
+    div.comment-board {
+        background-image: url(static/images/cars/2.jpg);
+        background-position: 50% 70%;
+        /*-webkit-transform: scale(0.5, 0.5);*/
+    }
+    div.think-board {
+        background-image: url(static/images/cars/3.jpg);
+        background-position: 50% 70%;
+        /*-webkit-transform: scale(0.5, 0.5);*/
+    }
+    div.donation-board {
+        background-image: url(static/images/cars/4.jpg);
+        background-position: 50% 70%;
+        /*-webkit-transform: scale(0.5, 0.5);*/
+    }
+    .active {
+        border-bottom: 3px solid green;
+    }
+    div.display-board-box {
+        width: auto;
+        height: 525px;
+        margin: 0 2px;
+        position: relative;
+        top: 50%;
+        margin-top: -295px;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+    }
+    .board {
+        display: none;
+        text-align: center;
+        line-height: 525px;
+    }
+    </style>
+</head>
+<body>
+<div class="big-box">
+
+<div class="tab-header-box">
+<div class="one-tab-box tab-one active">技术</div>
+<div class="one-tab-box tab-two">评论</div>
+<div class="one-tab-box tab-three">感悟</div>
+<div class="one-tab-box tab-four" href="">赞助</div>
+</div>
+
+<div class="display-board-box">
+    <div class="board tech-board">技术</div>
+    <div class="board comment-board">评论</div>
+    <div class="board think-board">感悟</div>
+    <div class="board donation-board">赞助</div>
+</div>
+
+
+
+
+
+
+</div>
+
+<script type="text/javascript">
+    $(".tab-one").click(function() {
+        $(".board").hide();
+        $(".one-tab-box").removeClass("active");
+        $(".tab-one").addClass("active");
+        $(".tech-board").show();
+    });
+    $(".tab-two").click(function() {
+        $(".board").hide();
+        $(".one-tab-box").removeClass("active");
+        $(".tab-two").addClass("active");
+        $(".comment-board").show();
+    });
+    $(".tab-three").click(function() {
+        $(".board").hide();
+        $(".one-tab-box").removeClass("active");
+        $(".tab-three").addClass("active");
+        $(".think-board").show();
+    });
+    $(".tab-four").click(function() {
+        $(".board").hide();
+        $(".one-tab-box").removeClass("active");
+        $(".tab-four").addClass("active");
+        $(".donation-board").show();
+    });
+
+$(".tab-one").click();
+
+</script>
+</body>
+</html>
