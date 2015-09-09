@@ -9,13 +9,13 @@
         background: #f6f6f6;
     }
     div.big-box {
-        width: 1000px;
+        width: 1200px;
         height: 600px;
         margin: auto;
         top: 50%;
         left: 50%;
         margin-top: -300px;
-        margin-left: -500px;
+        margin-left: -600px;
         position: absolute;
         box-sizing: border-box;
         /*border: 1px solid #000000;*/
@@ -27,13 +27,14 @@
         position: relative;
         box-sizing: border-box;
         text-align: center;
-        border: 1px solid #000000;
+        border: 1px solid #d5d5d5;
     }
     div.one-tab-box {
         /*border: 1px solid #000000;*/
         width: 230px;
         height: 50px;
         top: 50%;
+        cursor: pointer;
         margin: -25px 5px 0 5px;
         position: relative;
         display: inline-block;
@@ -41,22 +42,22 @@
         text-align: center;
         line-height: 66px;
     }
-    div.tech-board {
+    div.tab-one-board {
         background-image: url(static/images/cars/1.jpg);
         background-position: 50% 70%;
         /*-webkit-transform: scale(0.5, 0.5);*/
     }
-    div.comment-board {
+    div.tab-two-board {
         background-image: url(static/images/cars/2.jpg);
         background-position: 50% 70%;
         /*-webkit-transform: scale(0.5, 0.5);*/
     }
-    div.think-board {
+    div.tab-three-board {
         background-image: url(static/images/cars/3.jpg);
         background-position: 50% 70%;
         /*-webkit-transform: scale(0.5, 0.5);*/
     }
-    div.donation-board {
+    div.tab-four-board {
         background-image: url(static/images/cars/4.jpg);
         background-position: 50% 70%;
         /*-webkit-transform: scale(0.5, 0.5);*/
@@ -92,10 +93,10 @@
 </div>
 
 <div class="display-board-box">
-    <div class="board tech-board">技术</div>
-    <div class="board comment-board">评论</div>
-    <div class="board think-board">感悟</div>
-    <div class="board donation-board">赞助</div>
+    <div class="board tab-one-board">技术</div>
+    <div class="board tab-two-board">评论</div>
+    <div class="board tab-three-board">感悟</div>
+    <div class="board tab-four-board">赞助</div>
 </div>
 
 
@@ -106,30 +107,39 @@
 </div>
 
 <script type="text/javascript">
-    $(".tab-one").click(function() {
-        $(".board").hide();
-        $(".one-tab-box").removeClass("active");
-        $(".tab-one").addClass("active");
-        $(".tech-board").show();
-    });
-    $(".tab-two").click(function() {
-        $(".board").hide();
-        $(".one-tab-box").removeClass("active");
-        $(".tab-two").addClass("active");
-        $(".comment-board").show();
-    });
-    $(".tab-three").click(function() {
-        $(".board").hide();
-        $(".one-tab-box").removeClass("active");
-        $(".tab-three").addClass("active");
-        $(".think-board").show();
-    });
-    $(".tab-four").click(function() {
-        $(".board").hide();
-        $(".one-tab-box").removeClass("active");
-        $(".tab-four").addClass("active");
-        $(".donation-board").show();
-    });
+    // $(".tab-one").click(function() {
+    //     $(".board").hide();
+    //     $(".one-tab-box").removeClass("active");
+    //     $(".tab-one").addClass("active");
+    //     $(".tech-board").show();
+    // });
+    // $(".tab-two").click(function() {
+    //     $(".board").hide();
+    //     $(".one-tab-box").removeClass("active");
+    //     $(".tab-two").addClass("active");
+    //     $(".comment-board").show();
+    // });
+    // $(".tab-three").click(function() {
+    //     $(".board").hide();
+    //     $(".one-tab-box").removeClass("active");
+    //     $(".tab-three").addClass("active");
+    //     $(".think-board").show();
+    // });
+    // $(".tab-four").click(function() {
+    //     $(".board").hide();
+    //     $(".one-tab-box").removeClass("active");
+    //     $(".tab-four").addClass("active");
+    //     $(".donation-board").show();
+    // });
+$(".one-tab-box").click(function(e){
+    c_target = e.currentTarget;
+    var current_class = "."+c_target.classList[1]
+    var map_board_div_class = current_class+"-board";
+    $(".board").hide();
+    $(".one-tab-box").removeClass("active");
+    $(current_class).addClass("active")
+    $(map_board_div_class).show();
+});
 
 $(".tab-one").click();
 
